@@ -1,0 +1,13 @@
+{
+  "name": "kirby-eval-harness",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Reproducible eval suite for Kirby, the grounded chatbot at karimnsemaan.me. Run the same cases against the live endpoint and verify the /measured numbers.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "golden": "BASE_URL=https://karimnsemaan.me EVAL_SLOW=1 node eval-chat.mjs",
+    "holdout": "BASE_URL=https://karimnsemaan.me EVAL_SLOW=1 node eval-chat-holdout.mjs"
+  }
+}
