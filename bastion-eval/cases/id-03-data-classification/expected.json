@@ -1,0 +1,45 @@
+{
+  "caseId": "id-03-data-classification",
+  "csfFunction": "ID",
+  "controlIds": ["ID.AM-03", "ID.AM-05", "ID.AM-07"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["PHI", "unsanctioned", "data inventory", "FTP"],
+      "controlIdHint": "ID.AM-07"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["classification label", "criticality", "12 percent", "unlabeled"],
+      "controlIdHint": "ID.AM-05"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["data flow", "HL7", "interfaces", "diagrams"],
+      "controlIdHint": "ID.AM-03"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["Epic", "Restricted", "data owner", "retention"],
+      "controlIdHint": "ID.AM-07"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["Varonis", "100 percent", "discovery"],
+      "controlIdHint": "ID.AM-07"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

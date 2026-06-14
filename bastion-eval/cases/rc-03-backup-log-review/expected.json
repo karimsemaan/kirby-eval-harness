@@ -1,0 +1,45 @@
+{
+  "caseId": "rc-03-backup-log-review",
+  "csfFunction": "RC",
+  "controlIds": ["RC.RP-01", "RC.RP-03", "RC.RP-04", "PR.DS-11"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["restore verification", "RESTORE-VERIFY-EHR", "four consecutive months"],
+      "controlIdHint": "RC.RP-03"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["replication", "paused", "stale data"],
+      "controlIdHint": "RC.RP-01"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["RPO", "transaction log", "24 hours"],
+      "controlIdHint": "PR.DS-11"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["operational baseline", "administrator account", "remains enabled"],
+      "controlIdHint": "RC.RP-04"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["99.2", "success rate", "daily automated report"],
+      "controlIdHint": "PR.DS-11"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

@@ -1,0 +1,45 @@
+{
+  "caseId": "de-03-log-pipeline-review",
+  "csfFunction": "DE",
+  "controlIds": ["DE.AE-01", "DE.AE-03", "DE.CM-01", "DE.CM-02", "DE.CM-06"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["Azure", "Event Hub", "client secret", "feed-silence"],
+      "controlIdHint": "DE.AE-03"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["east-west", "NetFlow", "baseline", "clinical VLAN"],
+      "controlIdHint": "DE.AE-01"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "risk",
+      "severityAtLeast": "high",
+      "anyKeywords": ["ClearWell", "vendor", "SFTP", "exfiltration"],
+      "controlIdHint": "DE.CM-06"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["badge", "camera", "physical", "Genetec"],
+      "controlIdHint": "DE.CM-02"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["Suricata", "IDS", "perimeter", "file integrity"],
+      "controlIdHint": "DE.CM-01"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

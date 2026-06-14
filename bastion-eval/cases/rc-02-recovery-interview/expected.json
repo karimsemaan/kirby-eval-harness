@@ -1,0 +1,76 @@
+{
+  "caseId": "rc-02-recovery-interview",
+  "csfFunction": "RC",
+  "controlIds": [
+    "RC.RP-01",
+    "RC.RP-02",
+    "RC.RP-03",
+    "RC.RP-05",
+    "RC.CO-01",
+    "RC.CO-02",
+    "ID.IM-03"
+  ],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": [
+        "scan the backup",
+        "ransomware binary",
+        "ransomware binaries",
+        "unverified backups",
+        "malware scanning of backup",
+        "without scanning"
+      ],
+      "controlIdHint": "RC.RP-03",
+      "_tuned": "2026-06-11 scoring review (PHRASING): the model surfaced the seeded gap as RC.RP-03 risk/high, 'restored directly from Monday night Veeam backups without scanning for ransomware binaries' with gaps 'no malware scanning of backup media before restore'. The original net listed only the singular 'ransomware binary' plus two phrasings the model did not use. Added plural and phrasing variants; type, severity floor, and intent unchanged."
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": [
+        "integrity checks",
+        "validated the application",
+        "back into production"
+      ],
+      "controlIdHint": "RC.RP-05"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["executive team", "status updates", "clinic manager"],
+      "controlIdHint": "RC.CO-01"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["tier list", "improvised", "restore order"],
+      "controlIdHint": "RC.RP-02"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["lessons learned", "improvement actions"],
+      "controlIdHint": "ID.IM-03"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": [
+        "Ohio Department of Health",
+        "regulator",
+        "reporting window"
+      ],
+      "controlIdHint": "RC.CO-02"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

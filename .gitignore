@@ -1,4 +1,6 @@
 node_modules/
-*.json
-!package.json
+# eval report outputs at the repo root only (EVAL_REPORT=...) — NOT the
+# committed bastion-eval cases/responses, which the offline rescore needs.
+/*.json
+!/package.json
 .DS_Store

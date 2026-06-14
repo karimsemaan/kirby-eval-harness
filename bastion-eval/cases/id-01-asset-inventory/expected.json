@@ -1,0 +1,52 @@
+{
+  "caseId": "id-01-asset-inventory",
+  "csfFunction": "ID",
+  "controlIds": ["ID.AM-01", "ID.AM-02", "ID.AM-03", "ID.AM-04", "ID.AM-08"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["biomedical", "infusion", "untracked", "not recorded in any inventory"],
+      "controlIdHint": "ID.AM-01"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["SaaS", "software inventory", "shadow IT"],
+      "controlIdHint": "ID.AM-02"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["sanitization", "certificate of destruction", "disposal", "decommissioned"],
+      "controlIdHint": "ID.AM-08"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["supplier", "managed services", "supplier-provided"],
+      "controlIdHint": "ID.AM-04"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["reconciliation", "CMDB", "19 months"],
+      "controlIdHint": "ID.AM-01"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["network architecture diagram", "data flows", "version controlled"],
+      "controlIdHint": "ID.AM-03"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

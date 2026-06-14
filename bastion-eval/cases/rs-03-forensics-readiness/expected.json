@@ -1,0 +1,52 @@
+{
+  "caseId": "rs-03-forensics-readiness",
+  "csfFunction": "RS",
+  "controlIds": ["RS.AN-03", "RS.AN-06", "RS.AN-07", "RS.AN-08", "RS.MI-01", "RS.MI-02"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["reimaged", "forensic", "disk image", "unrecoverable", "evidence preservation"],
+      "controlIdHint": "RS.AN-07"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["chain of custody", "investigation log", "from memory", "reconstructed"],
+      "controlIdHint": "RS.AN-06"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["magnitude", "scope", "ePHI", "patient records", "dwell"],
+      "controlIdHint": "RS.AN-08"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["root cause", "MFA", "multi-factor", "not investigated"],
+      "controlIdHint": "RS.AN-03"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["retention", "overwritten", "rotate", "14 days"],
+      "controlIdHint": "RS.AN-07"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["containment", "isolated", "18 minutes", "eradication"],
+      "controlIdHint": "RS.MI-01"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

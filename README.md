@@ -16,10 +16,11 @@ injection, and generalizes.
 
 | File | What it runs |
 | --- | --- |
-| `eval-chat.mjs` | The **golden** suite — the tuned cases (grounded / refusal / persona). Published result: 30/30. |
-| `eval-chat-holdout.mjs` | The **held-out** suite — cases frozen *after* the prompt + corpus were finalized and never tuned against, so it measures generalization, not memorization. |
+| `eval-chat.mjs` | The **golden** Kirby suite — the tuned cases (grounded / refusal / persona). Published result: 30/30. |
+| `eval-chat-holdout.mjs` | The **held-out** Kirby suite — cases frozen *after* the prompt + corpus were finalized and never tuned against, so it measures generalization, not memorization. |
+| `bastion-eval/` | The **Bastion** security gap-analysis eval — 20 cases over synthetic evidence, **offline-reproducible** from committed model responses (zero API calls). |
 
-Every case here is also rendered, with its verbatim transcript, on
+Every Kirby case here is also rendered, with its verbatim transcript, on
 `/measured` — so the questions and replies are already public; this repo just
 makes the harness runnable.
 
@@ -44,6 +45,22 @@ BASE_URL=https://karimnsemaan.me EVAL_RUNS=20 EVAL_PACE_MS=3000 \
 `EVAL_SLOW=1` paces requests ~35s apart to stay under the endpoint's per-IP
 rate limit (~10 requests / 5 minutes). A full sweep is slow by design; that
 limit is a real production control, not a stall.
+
+### Bastion: reproduce offline, no API key needed
+
+The Bastion eval re-scores **committed** model responses (synthetic evidence
+about a fictional company; no client data, no secrets), so you can verify the
+published 10/20 strict pass, 83.1% critical-finding recall, and 95.6% citation
+validity **with zero API calls**:
+
+```bash
+node bastion-eval/run-eval.mjs --rescore-only
+```
+
+This re-parses every committed response and re-runs the scorer. It is the same
+thing a skeptic did to confirm the `/measured` Bastion numbers. (Full eval runs
+that re-fetch from the model need the private Bastion checkout + an API key;
+`--rescore-only` needs neither.)
 
 ## Honesty notes (read these)
 

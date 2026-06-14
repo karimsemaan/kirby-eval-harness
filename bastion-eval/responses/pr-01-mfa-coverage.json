@@ -1,0 +1,33 @@
+{
+  "caseId": "pr-01-mfa-coverage",
+  "model": "claude-sonnet-4-20250514",
+  "promptHash": "d9d94184f40362c265c51033ae71471dae725750f8b74291bb0ed7a437aa9fb9",
+  "cachedAt": "2026-06-11T07:14:23.821Z",
+  "response": {
+    "model": "claude-sonnet-4-20250514",
+    "id": "msg_01F8zBgYuh4kXCo7WzQr5GWq",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"analyses\": [\n    {\n      \"controlId\": \"PR.AA-01\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"high\",\n      \"observation\": \"The policy establishes MFA enrollment during new-hire orientation with identity verification via government-issued photo ID, and factor recovery via manager callback verification. However, the document does not address credential deprovisioning or lifecycle management processes for departed users, service accounts, or hardware credentials.\",\n      \"gaps\": \"No documented deprovisioning process for user accounts, service accounts, or hardware credentials. No SLA specified for account deactivation upon termination. No mention of automated identity lifecycle workflows or service account inventories.\",\n      \"quote\": \"MFA enrollment occurs at new-hire orientation; the service desk verifies a government-issued photo ID before activating the first factor\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.AA-03\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"risk\",\n      \"severity\": \"critical\",\n      \"observation\": \"MFA is enforced for remote access, cloud applications, EHR, and administrative consoles via Okta, with mandatory FIDO2 for 22 IT Infrastructure and Security staff. However, MedChart Classic at 2 hospitals remains accessible from internet with password-only authentication under exception EX-2021-014, which has no expiry date and has not been reviewed since October 2021.\",\n      \"gaps\": \"Legacy EHR system (MedChart Classic) accessible from internet without MFA under stale exception. 612 active users still use SMS as primary factor despite FIDO2/Okta Verify availability.\",\n      \"quote\": \"MedChart Classic, the legacy EHR module still in production at Lakeshore Community Hospital and Maple Grove Medical Center, does not support modern authentication protocols. Under exception EX-2021-014 it is exempt from MFA and is reachable from the internet through the clinician remote portal with username and password only.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.AA-05\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"risk\",\n      \"severity\": \"critical\",\n      \"observation\": \"The policy mandates privileged accounts be separate from standard accounts and implements CyberArk PAM with FIDO2 authentication and session recording for privileged access. However, 38 shared generic accounts remain active across clinical workstations with passwords unchanged since 2022, some providing access to medication dispensing systems without individual user attribution.\",\n      \"gaps\": \"No documented access review process or frequency. IAM exception register not reviewed since October 2021. 38 shared accounts violate individual accountability with stale passwords and access to critical systems like Pyxis medication dispensing.\",\n      \"quote\": \"38 shared generic accounts (for example NURSE-STATION-3W and ED-TRIAGE-01) remain in active use on clinical workstations across all three hospitals. The passwords for these accounts have not been changed since 2022, several of the accounts grant access to the Pyxis medication dispensing interface, and actions taken under these accounts cannot be attributed to an individual user.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"summary\": \"The MFA and Password Standard demonstrates mature technical controls including FIDO2 enforcement for privileged users, CyberArk PAM implementation, and Okta-based authentication. However, critical gaps exist around legacy system exceptions, shared account usage, and absence of documented identity lifecycle processes.\",\n  \"followUpQuestions\": [\n    \"What is the timeline for MedChart Classic retirement or MFA enablement?\",\n    \"How frequently are access reviews conducted for user accounts and what is the remediation SLA?\",\n    \"What automated workflows exist in Okta for account provisioning and deprovisioning?\",\n    \"When was the IAM exception register last reviewed and what governance process ensures regular review?\",\n    \"What compensating controls exist for the 38 shared clinical accounts and when will they be eliminated?\",\n    \"What is the deprovisioning SLA for terminated employees and how is compliance measured?\"\n  ],\n  \"conflictsDetected\": []\n}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5741,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 985,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}

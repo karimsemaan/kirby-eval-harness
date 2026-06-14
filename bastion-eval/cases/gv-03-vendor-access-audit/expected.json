@@ -1,0 +1,45 @@
+{
+  "caseId": "gv-03-vendor-access-audit",
+  "csfFunction": "GV",
+  "controlIds": ["GV.SC-04", "GV.SC-05", "GV.SC-06", "GV.SC-08", "GV.SC-10"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["terminated", "contract end", "offboard", "fourteen months"],
+      "controlIdHint": "GV.SC-10"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["inventory", "criticality", "tiering", "no inventory record"],
+      "controlIdHint": "GV.SC-04"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["contract", "clause", "breach notification", "right to audit"],
+      "controlIdHint": "GV.SC-05"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["due diligence", "security assessment", "soc 2", "questionnaire"],
+      "controlIdHint": "GV.SC-06"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["tabletop", "incident response exercise", "carebridge"],
+      "controlIdHint": "GV.SC-08"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

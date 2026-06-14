@@ -1,0 +1,52 @@
+{
+  "caseId": "pr-03-encryption-review",
+  "csfFunction": "PR",
+  "controlIds": ["PR.DS-01", "PR.DS-02", "PR.DS-11"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["not encrypted at rest", "TDE is not enabled", "unencrypted", "LUN 47"],
+      "controlIdHint": "PR.DS-01"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["HL7", "MLLP", "cleartext", "port 6661"],
+      "controlIdHint": "PR.DS-02"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["Managed HSM", "Key Vault", "Transparent Data Encryption", "TDE using AES-256"],
+      "controlIdHint": "PR.DS-01"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["TLS 1.0", "3DES"],
+      "controlIdHint": "PR.DS-02"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["restore test", "restoration", "18 months"],
+      "controlIdHint": "PR.DS-11"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["immutable", "Commvault", "14-day"],
+      "controlIdHint": "PR.DS-11"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

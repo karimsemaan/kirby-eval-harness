@@ -1,0 +1,52 @@
+{
+  "caseId": "gv-02-leadership-interview",
+  "csfFunction": "GV",
+  "controlIds": ["GV.RR-01", "GV.RR-02", "GV.RR-03", "GV.RR-04", "GV.PO-01", "GV.PO-02"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["vacant", "accountab", "no security owner", "seventeen months"],
+      "controlIdHint": "GV.RR-02"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["budget", "staffing", "resourc", "30 percent"],
+      "controlIdHint": "GV.RR-03"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["policy review", "2022", "annual", "outdated"],
+      "controlIdHint": "GV.PO-02"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["exception", "informal", "verbal"],
+      "controlIdHint": "GV.PO-01"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["board", "standing", "quarterly agenda"],
+      "controlIdHint": "GV.RR-01"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["termination checklist", "offboarding", "same day", "onboarding"],
+      "controlIdHint": "GV.RR-04"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

@@ -1,0 +1,33 @@
+{
+  "caseId": "de-02-soc-alert-triage",
+  "model": "claude-sonnet-4-20250514",
+  "promptHash": "9817968a37d62a7edc31469f3e8cb173eb0b99338519c1b35a9634bdeb55f2fa",
+  "cachedAt": "2026-06-11T07:08:56.329Z",
+  "response": {
+    "model": "claude-sonnet-4-20250514",
+    "id": "msg_01KjN3H9H1ztBoBPYay13Gnt",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"analyses\": [\n    {\n      \"controlId\": \"DE.CM-01\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"Network monitoring is limited to perimeter devices only. Splunk SIEM receives feeds from firewalls and VPN but lacks internal network visibility for east-west traffic monitoring. No dedicated network monitoring tools like IDS/IPS or network traffic analysis platforms are deployed.\",\n      \"gaps\": \"No east-west traffic monitoring; no dedicated network IDS/IPS deployment; limited to firewall and VPN logs at network perimeter only\",\n      \"quote\": \"Firewalls, VPN, the Windows domain, and CrowdStrike. Those four feeds carry essentially all of our detection content. Anything outside them, we are blind at the SIEM layer and we know it.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"DE.CM-09\",\n      \"coverage\": \"full\",\n      \"findingType\": \"strength\",\n      \"severity\": null,\n      \"observation\": \"CrowdStrike Falcon EDR achieves 98% deployment coverage across workstations and servers with automated containment capabilities. The system has successfully prevented ransomware propagation through automatic containment policies, stopping 2 ransomware precursors in the current year.\",\n      \"quote\": \"CrowdStrike Falcon is deployed on 98 percent of workstations and servers, and the automatic containment policy has stopped two ransomware precursors this year\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"DE.AE-02\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"SOC has documented triage runbooks for phishing and malware alerts with a 30-minute acknowledgment SLA that is consistently met during business hours. However, lateral movement detection capabilities have been completely suppressed since November 2025 due to a misconfigured suppression rule that disabled the entire detection category rather than targeting specific noisy hosts.\",\n      \"gaps\": \"Lateral movement detection category completely suppressed for 5 months; no tuning time allocated to rebuild detection searches; detection gap at SIEM layer for this attack vector\",\n      \"quote\": \"The suppression rule silenced the entire lateral movement detection category, not just the noisy hosts, and it has been active for five months.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"DE.AE-07\",\n      \"coverage\": \"none\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"No threat intelligence feeds are integrated into the SIEM platform. Analysts rely on manual processes including reading vendor blogs and CISA advisories when time permits, with indicator checks performed through manual copy-paste operations rather than automated correlation.\",\n      \"gaps\": \"No threat intelligence platform integration; no automated IOC correlation; manual indicator checking only; no structured threat intelligence consumption process\",\n      \"quote\": \"No threat intelligence feeds are integrated into the SIEM.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"DE.AE-08\",\n      \"coverage\": \"none\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"No documented criteria exist for declaring security incidents, resulting in inconsistent escalation practices that depend on which analyst is on shift. This inconsistency was demonstrated when one analyst managed a credential-stuffing case as a routine ticket for 9 days while another analyst would have declared it an incident immediately.\",\n      \"gaps\": \"No documented incident declaration criteria; no severity definitions or escalation thresholds; inconsistent incident classification between analysts\",\n      \"quote\": \"We have no documented criteria for declaring an incident. It depends who is on shift; the senior analysts escalate by gut feel.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"summary\": \"The SOC demonstrates strong endpoint detection capabilities with 98% CrowdStrike EDR coverage and documented triage processes, but faces critical gaps in threat intelligence integration and incident declaration criteria. A significant operational risk exists due to suppressed lateral movement detections and complete absence of after-hours monitoring coverage.\",\n  \"followUpQuestions\": [\n    \"What is the specific scope and configuration of the lateral movement suppression rule that has been active since November 2025?\",\n    \"What is the business justification for SOC coverage limited to Monday-Friday 07:00-19:00 Eastern for a healthcare organization with 24/7 operations?\",\n    \"How are security events prioritized and triaged without threat intelligence context or asset criticality information?\",\n    \"What compensating controls exist for network security monitoring in the absence of dedicated IDS/IPS or network traffic analysis tools?\",\n    \"How does the organization measure SOC effectiveness without consistent incident declaration criteria or metrics?\"\n  ],\n  \"conflictsDetected\": []\n}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5919,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1162,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}

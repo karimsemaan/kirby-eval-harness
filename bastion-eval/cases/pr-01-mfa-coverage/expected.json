@@ -1,0 +1,52 @@
+{
+  "caseId": "pr-01-mfa-coverage",
+  "csfFunction": "PR",
+  "controlIds": ["PR.AA-01", "PR.AA-03", "PR.AA-05"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["MedChart Classic", "EX-2021-014", "exempt", "username and password only"],
+      "controlIdHint": "PR.AA-03"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["shared", "generic account", "NURSE-STATION", "cannot be attributed"],
+      "controlIdHint": "PR.AA-01"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["FIDO2", "hardware security key", "CyberArk"],
+      "controlIdHint": "PR.AA-03"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["SMS", "one-time passcode"],
+      "controlIdHint": "PR.AA-03"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["exception register", "no expiry"],
+      "controlIdHint": "PR.AA-05"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["breached", "800-63", "lockout"],
+      "controlIdHint": "PR.AA-01"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

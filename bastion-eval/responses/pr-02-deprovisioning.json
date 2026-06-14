@@ -1,0 +1,33 @@
+{
+  "caseId": "pr-02-deprovisioning",
+  "model": "claude-sonnet-4-20250514",
+  "promptHash": "10264f05743b9e9394a07544d06c1a20b36b2faad134c5657b2d53f08154b27b",
+  "cachedAt": "2026-06-11T07:14:43.913Z",
+  "response": {
+    "model": "claude-sonnet-4-20250514",
+    "id": "msg_011cda5GCcqY7DgHJnPjswTQ",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"analyses\": [\n    {\n      \"controlId\": \"PR.AA-01\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"high\",\n      \"observation\": \"Meridian has automated identity lifecycle management for regular employees via Workday SCIM to Okta (15-minute deprovisioning) with monthly testing. However, contractor and agency staff are excluded from this system: 23 contractor accounts found active past assignment end dates, with the oldest enabled 7 months after contract termination and retaining VPN entitlement. Privileged admin accounts are created manually outside the SCIM flow and do not receive automated deprovisioning.\",\n      \"gaps\": \"Contractors and agency staff lack formal lifecycle management; privileged accounts bypass automated deprovisioning; no service account management discussed.\",\n      \"quote\": \"Travel nurses and agency staff are not in Workday. The staffing office tracks them in a spreadsheet, and offboarding depends on the unit manager emailing the service desk when an assignment ends. Nobody owns the follow-up. In our April access audit we found 23 contractor accounts still active past their assignment end dates. The oldest had been enabled for seven months after the contract ended, and it still had VPN entitlement.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.AA-05\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"risk\",\n      \"severity\": \"high\",\n      \"observation\": \"Meridian conducts quarterly Okta access certifications with 96% completion rate for federated applications. However, Active Directory privileged group membership (Domain Admins, Server Operators, MedChart superuser roles) has never been formally reviewed. A terminated DBA retained enabled Domain Admins membership for 3 weeks after termination, with system logon activity on February 9 (3 weeks post-termination).\",\n      \"gaps\": \"No recurring recertification of Active Directory privileged groups; privileged accounts bypass standard review cycles; no evidence of least privilege enforcement for admin roles.\",\n      \"quote\": \"But we have never run a formal recertification of Active Directory privileged group membership. Domain Admins, Server Operators, and the MedChart superuser roles have never been through a documented review. The April audit was a one-off that the CISO requested after the DBA incident.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.AA-06\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"Physical access controls include badge systems with weekly deactivation batches and separated server room access for 30 authorized personnel. However, terminated employees retain working badges for up to 4 days due to weekly batch processing. Badge systems are not integrated with identity systems, and server room access follows the same weekly deactivation schedule.\",\n      \"gaps\": \"Badge deactivation delayed up to 4 days post-termination; no integration between badge and identity systems; server room access not immediately revoked upon termination.\",\n      \"quote\": \"Badge deactivation is a weekly batch. Physical Security runs the termination list against the badge system every Friday afternoon. So someone terminated on a Monday keeps a working badge for up to four days.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"summary\": \"Meridian demonstrates strong identity lifecycle management for regular employees with automated Workday-to-Okta deprovisioning tested monthly. However, significant gaps exist for non-employee populations (contractors tracked in spreadsheets), privileged account management (no AD group recertifications), and physical access (4-day badge revocation delay).\",\n  \"followUpQuestions\": [\n    \"How many contractor and agency staff are currently active, and what applications do they access?\",\n    \"What is the complete inventory of privileged groups in Active Directory, and when was each last reviewed?\",\n    \"Are there any compensating controls for the 4-day physical access gap, such as escort requirements or area monitoring?\",\n    \"What service accounts exist across the environment, and how are they managed?\",\n    \"Has the organization considered implementing a PAM solution to manage privileged account lifecycle?\"\n  ]\n}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5885,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 979,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}

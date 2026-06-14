@@ -1,0 +1,52 @@
+{
+  "caseId": "de-01-logging-policy",
+  "csfFunction": "DE",
+  "controlIds": ["DE.CM-01", "DE.CM-03", "DE.AE-03", "PR.PS-04"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["EHR", "CareBridge", "database-tier", "audit logging", "ePHI"],
+      "controlIdHint": "PR.PS-04"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["retention", "30 days", "cold archive", "365"],
+      "controlIdHint": "PR.PS-04"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["medical device", "infusion", "biomedical"],
+      "controlIdHint": "DE.CM-01"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["NTP", "time synchronization", "clock drift"],
+      "controlIdHint": "DE.AE-03"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["weekly authentication", "privileged-access log review", "never reassigned"],
+      "controlIdHint": "DE.CM-03"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["Splunk", "centralized", "onboarding", "append-only"],
+      "controlIdHint": "DE.AE-03"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

@@ -1,0 +1,33 @@
+{
+  "caseId": "rc-03-backup-log-review",
+  "model": "claude-sonnet-4-20250514",
+  "promptHash": "ae0e6e41bc7f4ea395426b48eeb3fcacfb9272e4fd9348385d5345917f5c4e29",
+  "cachedAt": "2026-06-11T07:16:43.625Z",
+  "response": {
+    "model": "claude-sonnet-4-20250514",
+    "id": "msg_013CCWo16WRkoPpJ56kN6j5p",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"analyses\": [\n    {\n      \"controlId\": \"RC.RP-01\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"Evidence shows recovery procedures were executed during the February 2026 Westgate imaging incident, with three imaging servers restored from backup. However, the document references recovery activities without evidence of a documented recovery plan or formal integration with incident response processes.\",\n      \"gaps\": \"No documented recovery plan visible in evidence. Recovery appears ad-hoc rather than following a structured procedure integrated with IR processes.\",\n      \"quote\": \"Following the February 2026 Westgate imaging recovery, the three restored imaging servers were returned to service from backup images taken before the incident.\",\n      \"confidence\": \"medium\"\n    },\n    {\n      \"controlId\": \"RC.RP-03\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"risk\",\n      \"severity\": \"high\",\n      \"observation\": \"Monthly RESTORE-VERIFY-EHR job exists to verify backup integrity via automated test restore and checksum comparison. However, this verification has failed for 4 consecutive months (December 2025 through March 2026) due to storage issues on VERIFY-HOST-02, leaving no current evidence that EHR backups are restorable.\",\n      \"gaps\": \"Backup integrity verification failing for 4 months with no remediation. No alerting on verification failures. Critical system backup restorability unknown.\",\n      \"quote\": \"The restore verification job for the EHR database has failed for four consecutive months with the same storage error. No ticket was opened for any of the four failures. The job result is excluded from the daily automated report because verification jobs were never added to the report scope. As of this review, Meridian has no current evidence that the EHR backups are restorable.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"RC.RP-04\",\n      \"coverage\": \"none\",\n      \"findingType\": \"risk\",\n      \"severity\": \"high\",\n      \"observation\": \"After the February 2026 Westgate incident recovery, restored imaging servers were returned to service without establishing updated operational baselines or applying security hardening. The local administrator account compromised during the incident remains enabled with the same password, creating ongoing exposure.\",\n      \"gaps\": \"No post-incident security improvements implemented. Compromised credentials still active. Hardening recommendations from containment phase not applied to restored systems.\",\n      \"quote\": \"No updated operational baseline was established for the restored servers after recovery. The local administrator account that the attacker used for lateral movement remains enabled on all three restored imaging servers, with the same password it had before the incident. Hardening recommendations from the containment phase were not applied to the restored images.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.DS-11\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"Backup infrastructure covers 412 production workloads with 99.2% success rate in Q1 2026. Veeam Backup & Replication 12 with immutable hardened repository provides 3-2-1 compliance. All backup data encrypted with AES-256. However, critical gaps exist: EHR backup verification failing for 4 months, DR replication paused for 9 weeks, and transaction log frequency misaligned with RPO (24 hours vs 4 hour target).\",\n      \"gaps\": \"Backup testing failures unresolved for 4 months. DR replication stale by 9 weeks. RPO targets not met due to insufficient backup frequency.\",\n      \"quote\": \"Backup job success rate for the quarter was 99.2 percent across all 412 protected workloads. Failures are surfaced in a daily automated report delivered to the infra-ops channel each morning at 06:00, and all 11 backup job failures in Q1 were remediated within one business day. All backup data is encrypted with AES-256 and encryption keys are escrowed offline.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"summary\": \"The backup and DR infrastructure shows mixed maturity with documented processes and encryption standards, but critical operational gaps create recovery risks. While backup jobs maintain high success rates, verification testing has failed for 4 months and DR replication is stale by 9 weeks, potentially compromising recovery capabilities when needed.\",\n  \"followUpQuestions\": [\n    \"What is the formal recovery plan document and how does it integrate with the incident response process?\",\n    \"Why were verification job failures not escalated or included in daily reporting for 4 consecutive months?\",\n    \"What is the timeline to resume DC2-REPL-CORE replication and establish replication lag monitoring?\",\n    \"Has the organization conducted tabletop exercises or full recovery tests beyond the failed verification jobs?\",\n    \"What post-incident security improvements were planned for the Westgate recovery and why weren't they implemented?\"\n  ],\n  \"conflictsDetected\": []\n}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5951,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1184,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}

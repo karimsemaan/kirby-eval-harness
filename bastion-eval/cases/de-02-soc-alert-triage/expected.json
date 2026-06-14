@@ -1,0 +1,52 @@
+{
+  "caseId": "de-02-soc-alert-triage",
+  "csfFunction": "DE",
+  "controlIds": ["DE.CM-01", "DE.CM-09", "DE.AE-02", "DE.AE-07", "DE.AE-08"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["suppression", "silenced", "lateral movement"],
+      "controlIdHint": "DE.AE-02"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["after-hours", "nights and weekends", "shared mailbox", "Monday morning"],
+      "controlIdHint": "DE.CM-01"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["declaring an incident", "declaration criteria", "gut feel"],
+      "controlIdHint": "DE.AE-08"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["threat intelligence", "intel feeds", "CISA advisories"],
+      "controlIdHint": "DE.AE-07"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["threat hunting", "purely reactive"],
+      "controlIdHint": "DE.CM-09"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["CrowdStrike", "Falcon", "EDR", "98 percent"],
+      "controlIdHint": "DE.CM-09"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

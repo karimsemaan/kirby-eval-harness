@@ -1,0 +1,45 @@
+{
+  "caseId": "rs-01-ir-plan-testing",
+  "csfFunction": "RS",
+  "controlIds": ["RS.MA-01", "RS.MA-02", "RS.MA-03", "RS.MA-04", "RS.MA-05", "ID.IM-02", "ID.IM-04"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["tabletop", "never been tested", "untested", "exercise"],
+      "controlIdHint": "ID.IM-02"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["roster", "escalation contact", "no longer employed", "outdated", "departed"],
+      "controlIdHint": "RS.MA-04"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["recovery", "criteria", "safe to rebuild"],
+      "controlIdHint": "RS.MA-05"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["retainer", "law enforcement", "external", "third part", "insurance"],
+      "controlIdHint": "RS.MA-01"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["severity", "classification", "matrix", "prioritiz"],
+      "controlIdHint": "RS.MA-03"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

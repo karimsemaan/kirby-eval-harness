@@ -1,0 +1,52 @@
+{
+  "caseId": "rc-01-bcdr-policy",
+  "csfFunction": "RC",
+  "controlIds": ["RC.RP-01", "RC.RP-02", "RC.RP-03", "RC.CO-01", "PR.DS-11", "ID.IM-04"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["failover", "over two years", "never been validated"],
+      "controlIdHint": "RC.RP-01"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["EHR database", "restoration test", "deferred"],
+      "controlIdHint": "PR.DS-11"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["integrity verification", "malware scanning", "assumed clean"],
+      "controlIdHint": "RC.RP-03"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["call tree", "no longer employed", "communications lead"],
+      "controlIdHint": "RC.CO-01"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["immutable", "3-2-1", "AES-256"],
+      "controlIdHint": "PR.DS-11"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["tier", "dependencies", "restoration order"],
+      "controlIdHint": "RC.RP-02"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

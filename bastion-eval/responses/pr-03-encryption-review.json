@@ -1,0 +1,33 @@
+{
+  "caseId": "pr-03-encryption-review",
+  "model": "claude-sonnet-4-20250514",
+  "promptHash": "8cf8b5badb60979755aa81419fae56031b93613eeaf3ea4b615ada464e2adadb",
+  "cachedAt": "2026-06-11T07:15:09.175Z",
+  "response": {
+    "model": "claude-sonnet-4-20250514",
+    "id": "msg_01FYwWNpZyQmNUKKSV8UYw8V",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"analyses\": [\n    {\n      \"controlId\": \"PR.DS-01\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"high\",\n      \"observation\": \"Encryption at rest is implemented for most systems but with critical gaps in the LabTrak database. MedChart One uses Azure SQL TDE with AES-256 and customer-managed keys in Azure Key Vault Managed HSM (FIPS 140-3 Level 3) with annual rotation. Endpoints enforce BitLocker through Intune compliance policy. However, LabTrak database containing 1.9 million patient records over 11 years runs on unencrypted SQL Server 2014 with no TDE or volume-level encryption on Dell Unity LUN 47.\",\n      \"gaps\": \"LabTrak database storing 1.9 million patient records is completely unencrypted at rest. The underlying SAN volume (Dell Unity LUN 47) also lacks volume-level encryption. This represents a significant exposure of 11 years of laboratory results data.\",\n      \"quote\": \"LabTrak runs on SQL Server 2014 (extended support ended July 2024) at the Riverton General data center. The database is not encrypted at rest: TDE is not enabled, and the underlying SAN volume (Dell Unity LUN 47) has no volume-level encryption. The database holds approximately 1.9 million patient records spanning eleven years of laboratory results.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.DS-02\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"risk\",\n      \"severity\": \"critical\",\n      \"observation\": \"External TLS implementation includes modern ciphers (TLS 1.2/1.3) and HSTS on the patient portal, with IPsec-encrypted site-to-site MPLS links using AES-256-GCM. However, critical gaps exist: all 41 HL7 v2 interfaces transmit patient data (names, DOB, MRNs, results) in cleartext over MLLP/TCP port 6661 across the hospital LAN. One legacy API still accepts TLS 1.0 and 3DES for IVR integration.\",\n      \"gaps\": \"All 41 production HL7 interfaces carrying PHI operate without encryption despite Rhapsody supporting MLLP over TLS. Legacy appointment-reminders-api accepts deprecated TLS 1.0 and 3DES cipher suites. Both represent active data exposure risks.\",\n      \"quote\": \"HL7 v2 messages exchanged between LabTrak, MedChart One, and the Rhapsody interface engine are transmitted as MLLP over TCP port 6661 in cleartext across the hospital LAN. These messages carry patient names, dates of birth, medical record numbers, ordering providers, and result values. None of the 41 production HL7 interfaces use TLS\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"controlId\": \"PR.DS-11\",\n      \"coverage\": \"partial\",\n      \"findingType\": \"gap\",\n      \"severity\": \"medium\",\n      \"observation\": \"Backup protection includes Commvault with AES-256 encryption in transit and at rest, secondary replication to Azure immutable blob storage with 14-day lock, and keys escrowed in Azure Managed HSM. Daily monitoring tracks backup job success rates. However, restore testing is inadequate: no LabTrak restore test in 18 months, last MedChart One test in October 2024, with restore capability asserted rather than demonstrated.\",\n      \"gaps\": \"Backup restoration capability is not regularly validated. The most recent documented restore test for any clinical system was MedChart One in October 2024, with no LabTrak restoration testing in the last 18 months.\",\n      \"quote\": \"No test restoration of the LabTrak database has been performed in the last 18 months. The most recent documented restore test for any clinical system was MedChart One in October 2024. Backup job success rates are monitored daily, but restore capability is asserted, not demonstrated.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"summary\": \"This encryption architecture review reveals a mixed security posture with strong controls for some systems but critical gaps in others. The organization demonstrates mature encryption practices for Azure-hosted systems with proper key management, but legacy on-premises systems present significant exposure risks through unencrypted databases and cleartext clinical interfaces.\",\n  \"followUpQuestions\": [\n    \"What is the timeline and budget allocation for enabling TDE on LabTrak and encrypting the underlying SAN storage?\",\n    \"Why has MLLP over TLS not been implemented for HL7 interfaces despite being licensed and supported by Rhapsody?\",\n    \"What is the organization's policy for restore testing frequency, and why has it not been followed for critical clinical systems?\",\n    \"Are there compensating controls in place to protect the unencrypted LabTrak database and cleartext HL7 traffic?\",\n    \"What is the remediation plan for the TLS 1.0/3DES support on the appointment reminders API given the 2027 vendor contract?\"\n  ]\n}"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5973,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1228,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}

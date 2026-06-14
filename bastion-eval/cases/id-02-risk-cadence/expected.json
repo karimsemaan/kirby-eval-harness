@@ -1,0 +1,84 @@
+{
+  "caseId": "id-02-risk-cadence",
+  "csfFunction": "ID",
+  "controlIds": [
+    "ID.RA-01",
+    "ID.RA-02",
+    "ID.RA-04",
+    "ID.RA-05",
+    "ID.RA-06",
+    "ID.IM-02"
+  ],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": [
+        "risk assessment",
+        "two and a half years",
+        "annual",
+        "overdue"
+      ],
+      "controlIdHint": "ID.RA-05"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": [
+        "treatment plan",
+        "past their target dates",
+        "tracked to completion"
+      ],
+      "controlIdHint": "ID.RA-06",
+      "_tuned": "2026-06-11 scoring review (tightened, anti-credit): removed 'risk register' (it cross-matched the ID.RA-05 overdue-assessment finding already credited to mf-1, which would grant mf-2 spurious credit once risk-typed findings satisfy gap expectations) and narrowed bare 'tracked' for the same reason. mf-2 now tracks only the seeded treatment-plan item, which the model surfaced as ID.RA-06 gap/medium, below the high floor: a REAL severity miss that this tune deliberately preserves."
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": [
+        "threat intelligence",
+        "Health-ISAC",
+        "feeds",
+        "information sharing"
+      ],
+      "controlIdHint": "ID.RA-02"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": [
+        "validate",
+        "vulnerability register",
+        "Qualys",
+        "shared mailbox"
+      ],
+      "controlIdHint": "ID.RA-01"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": [
+        "penetration test",
+        "Jira",
+        "tracked to closure",
+        "roadmap"
+      ],
+      "controlIdHint": "ID.IM-02"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["5 by 5", "likelihood and impact", "scoring methodology"],
+      "controlIdHint": "ID.RA-04"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

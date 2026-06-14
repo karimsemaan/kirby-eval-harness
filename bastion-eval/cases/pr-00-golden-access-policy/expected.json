@@ -1,0 +1,51 @@
+{
+  "caseId": "pr-00-golden-access-policy",
+  "csfFunction": "PR",
+  "_source": "Adapted from Bastion/test-evidence/Golden-Eval: evidence is GOLDEN-01_Access_Control_Policy_v2.0.md with markdown bold markers stripped so verbatim quotes survive the citation check; expectations translate the GOLDEN-01 section of EXPECTED_FINDINGS.md into this harness's pinned contract. The source taxonomy has only gaps and strengths; the persistent vendor access exposure (source severity CRITICAL, an active exposure) is translated to findingType risk with a severity floor of high. The source's Must-Find items map to mustFind; its Should-Find and Expected Strengths map to shouldFind.",
+  "controlIds": ["PR.AA-01", "PR.AA-02", "PR.AA-03", "PR.AA-05", "GV.SC-04", "GV.SC-07"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["access review", "12 months", "informally"],
+      "controlIdHint": "PR.AA-05"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "risk",
+      "severityAtLeast": "high",
+      "anyKeywords": ["persistent VPN", "domain admin", "CloudOps", "not been reviewed or time-limited"],
+      "controlIdHint": "GV.SC-07"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["2-3 business days", "24 hours", "revocation", "deprovision"],
+      "controlIdHint": "PR.AA-05"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["not monitored or recorded", "vendor sessions", "session recording"],
+      "controlIdHint": "GV.SC-07"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "strength",
+      "anyKeywords": ["MFA", "multi-factor", "FIDO2"],
+      "controlIdHint": "PR.AA-03"
+    },
+    {
+      "id": "sf-4",
+      "findingType": "strength",
+      "anyKeywords": ["12 characters", "password", "lockout"],
+      "controlIdHint": "PR.AA-01"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

@@ -1,0 +1,92 @@
+{
+  "caseId": "gv-00-golden-ciso-interview",
+  "csfFunction": "GV",
+  "_source": "Adapted from Bastion/test-evidence/Golden-Eval: evidence is GOLDEN-02_CISO_Interview_Transcript.md with markdown bold markers stripped so verbatim quotes survive the citation check; expectations translate the GOLDEN-02 section of EXPECTED_FINDINGS.md into this harness's pinned contract. The undetected 3-week backup failure (source severity CRITICAL, an active exposure) is translated to findingType risk with a severity floor of high. The source's cross-document password rotation conflict cannot be exercised single-document, but the CISO admits the discrepancy in this transcript, so it is kept as a shouldFind gap under GV.PO-02. The transcript's vendor access and PAM admissions are given a home via GV.SC-07 with a shouldFind, since the strict scope rule would otherwise force the model to drop or fabricate them.",
+  "controlIds": [
+    "GV.PO-02",
+    "GV.SC-07",
+    "DE.AE-02",
+    "DE.AE-03",
+    "DE.CM-01",
+    "DE.CM-09",
+    "RS.MA-01",
+    "RC.RP-01",
+    "RC.RP-03",
+    "PR.DS-11",
+    "PR.AT-01",
+    "PR.IR-01"
+  ],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["SIEM", "centralized", "correlat"],
+      "controlIdHint": "DE.AE-03"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["tabletop", "incident response plan", "IR plan"],
+      "controlIdHint": "RS.MA-01"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "risk",
+      "severityAtLeast": "high",
+      "anyKeywords": ["backup job", "failing", "three weeks", "3 weeks"],
+      "controlIdHint": "PR.DS-11"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["EC2", "scanning scope", "blind spot", "IoT", "unscanned"],
+      "controlIdHint": "DE.CM-09"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["24/7", "business hours", "after-hours"],
+      "controlIdHint": "DE.CM-01"
+    },
+    {
+      "id": "sf-3",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["RTO", "aspirational", "full restoration", "never been validated"],
+      "controlIdHint": "RC.RP-01"
+    },
+    {
+      "id": "sf-4",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["90 days", "60 days", "never updated", "policy document"],
+      "controlIdHint": "GV.PO-02"
+    },
+    {
+      "id": "sf-5",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["vendor", "PAM", "privileged access management", "SOC 2"],
+      "controlIdHint": "GV.SC-07"
+    },
+    {
+      "id": "sf-6",
+      "findingType": "strength",
+      "anyKeywords": ["awareness", "training"],
+      "controlIdHint": "PR.AT-01"
+    },
+    {
+      "id": "sf-7",
+      "findingType": "strength",
+      "anyKeywords": ["segmentation"],
+      "controlIdHint": "PR.IR-01"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

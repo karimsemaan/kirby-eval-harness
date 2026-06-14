@@ -1,0 +1,45 @@
+{
+  "caseId": "rs-02-escalation-comms",
+  "csfFunction": "RS",
+  "controlIds": ["RS.MA-02", "RS.MA-03", "RS.MA-04", "RS.CO-01", "RS.CO-02", "RS.CO-04"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["after-hours", "after hours", "shared mailbox", "on-call", "overnight"],
+      "controlIdHint": "RS.MA-04"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["breach notification", "HIPAA", "regulator", "Office for Civil Rights", "OCR"],
+      "controlIdHint": "RS.CO-02"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["public", "press", "reporter", "holding statement", "spokesperson"],
+      "controlIdHint": "RS.CO-04"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["triage", "ServiceNow", "30 minute", "validated"],
+      "controlIdHint": "RS.MA-02"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "low",
+      "anyKeywords": ["judgment call", "no written criteria", "inconsistent", "discretion"],
+      "controlIdHint": "RS.MA-04"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

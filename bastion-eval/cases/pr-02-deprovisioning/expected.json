@@ -1,0 +1,45 @@
+{
+  "caseId": "pr-02-deprovisioning",
+  "csfFunction": "PR",
+  "controlIds": ["PR.AA-01", "PR.AA-05", "PR.AA-06"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["contractor", "travel nurse", "agency", "spreadsheet"],
+      "controlIdHint": "PR.AA-01"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "high",
+      "anyKeywords": ["Domain Admins", "database administrator", "admin account", "three weeks"],
+      "controlIdHint": "PR.AA-05"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["SCIM", "Workday", "15 minutes", "automated"],
+      "controlIdHint": "PR.AA-01"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["badge", "weekly batch", "physical access"],
+      "controlIdHint": "PR.AA-06"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["recertification", "group membership", "Server Operators", "never been through a documented review"],
+      "controlIdHint": "PR.AA-05"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}

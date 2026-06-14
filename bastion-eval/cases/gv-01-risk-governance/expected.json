@@ -1,0 +1,45 @@
+{
+  "caseId": "gv-01-risk-governance",
+  "csfFunction": "GV",
+  "controlIds": ["GV.RM-01", "GV.RM-02", "GV.RM-03", "GV.RM-04", "GV.RM-05", "GV.RM-06", "GV.OV-03"],
+  "mustFind": [
+    {
+      "id": "mf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["risk appetite", "tolerance threshold", "not been approved"],
+      "controlIdHint": "GV.RM-02"
+    },
+    {
+      "id": "mf-2",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["risk register", "not been updated", "twelve months", "stale"],
+      "controlIdHint": "GV.OV-03"
+    },
+    {
+      "id": "mf-3",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["scoring criteria", "personal judgment", "methodology", "standardized"],
+      "controlIdHint": "GV.RM-06"
+    }
+  ],
+  "shouldFind": [
+    {
+      "id": "sf-1",
+      "findingType": "gap",
+      "severityAtLeast": "medium",
+      "anyKeywords": ["enterprise risk", "erm register", "not reconciled"],
+      "controlIdHint": "GV.RM-03"
+    },
+    {
+      "id": "sf-2",
+      "findingType": "strength",
+      "severityAtLeast": "low",
+      "anyKeywords": ["board", "quarterly", "escalation"],
+      "controlIdHint": "GV.RM-05"
+    }
+  ],
+  "mustNot": { "fabricateControls": true, "missCitations": true }
+}
