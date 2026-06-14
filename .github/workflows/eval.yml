@@ -1,0 +1,33 @@
+name: evals
+
+# Proves, on every push, that the Bastion eval reproduces the numbers published
+# at karimnsemaan.me/measured from the committed responses alone — zero API
+# calls, no private repo, no secrets. The green badge is the point: anyone can
+# see the eval still reproduces without cloning.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly, so the badge reflects a recent run even with no commits.
+    - cron: "0 12 * * 1"
+
+jobs:
+  bastion-rescore:
+    name: Bastion eval reproduces offline (zero API)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Re-score the 20 committed responses
+        shell: bash
+        run: |
+          node bastion-eval/run-eval.mjs --rescore-only | tee out.txt || true
+          echo "--- asserting the published numbers reproduce ---"
+          grep -q "Cases: 10/20 passed" out.txt
+          grep -q "0.831" out.txt
+          grep -q "0.956" out.txt
+          echo "OK: 10/20, 0.831 recall, 0.956 citation validity reproduced offline."

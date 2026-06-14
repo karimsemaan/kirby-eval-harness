@@ -1,5 +1,12 @@
 # Kirby eval harness — reproduce the numbers at [karimnsemaan.me/measured](https://karimnsemaan.me/measured)
 
+[![evals](https://github.com/karimsemaan/kirby-eval-harness/actions/workflows/eval.yml/badge.svg)](https://github.com/karimsemaan/kirby-eval-harness/actions/workflows/eval.yml)
+
+> **Latest CI run** re-scores the 20 committed Bastion responses on every push and
+> asserts the published numbers reproduce: **10/20 strict pass · 0.831 critical-finding
+> recall · 0.956 citation validity**, with zero API calls. Green badge = it still
+> reproduces. Run it yourself: `npm run bastion`.
+
 This is the **actual** evaluation suite for **Kirby**, the grounded chatbot on
 [karimnsemaan.me](https://karimnsemaan.me). It is published so anyone can
 reproduce the eval numbers shown at

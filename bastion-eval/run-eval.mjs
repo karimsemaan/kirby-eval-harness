@@ -63,7 +63,7 @@ import { fileURLToPath } from "node:url";
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ACHIEVEMENTS_ROOT = path.resolve(SCRIPT_DIR, "..", "..", "..");
 const BASTION_REPO =
-  process.env.BASTION_REPO || "C:/Users/semaa/Documents/GitHub/Bastion";
+  process.env.BASTION_REPO || "the private Bastion checkout";
 const CASES_DIR = path.join(SCRIPT_DIR, "cases");
 // COMMITTED raw model responses (formerly a gitignored .cache/). Publishing
 // them is the point: anyone can audit the scoring against the actual outputs.
@@ -1402,8 +1402,8 @@ async function main() {
           "Verified for every case that the prompt included the control definition for each controlId the expectations reference (no mustFind hints a control absent from the prompt), that no findings were dropped in parsing (raw analyses count equals scored count for all 20 cases), and that no response was truncated (stop_reason end_turn everywhere). No case required a live re-run; every number derives from the original first-run responses committed at scripts/studies/bastion-eval/responses/.",
       },
       bastionRepo: mirror.offline
-        ? "Unavailable during this rescore; artifact re-scored offline from committed responses and case fixtures. Normal/full eval runs use C:/Users/semaa/Documents/GitHub/Bastion as a read-only mirror and never write or git-mutate it."
-        : "C:/Users/semaa/Documents/GitHub/Bastion (read-only mirror; never written or git-mutated by this harness)",
+        ? "Unavailable during this rescore; artifact re-scored offline from committed responses and case fixtures. Normal/full eval runs use the private Bastion checkout as a read-only mirror and never write or git-mutate it."
+        : "the private Bastion checkout (read-only mirror; never written or git-mutated by this harness)",
       bastionSha,
       mirroredFiles: Object.values(MIRRORED_FILES),
       promptKey: "analyze-evidence",
